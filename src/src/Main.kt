@@ -1,7 +1,4 @@
-import java.io.Console
 import java.io.File
-import java.io.OutputStream
-import java.io.PrintStream
 
 object Main {
     @JvmStatic
@@ -9,8 +6,9 @@ object Main {
         val fileName = "C:\\Users\\rkfeo\\Downloads\\da.txt"
         val file = File(fileName)
 
-        val text = file.readText().replace("\\s".toRegex(), "").replace("?", "?はてなだよ").replace("。", "。コンマだよ")
-        val linesArray = text.split("コンマだよ","\n", "はてなだよ")
+        val text = file.readText().replace("?", "?はてなだよ").replace("。", "。コンマだよ")
+        var linesArray = text.split("コンマだよ", "\r\n", "\n", "はてなだよ")
+        linesArray = linesArray.filter { item -> item.isNotEmpty() }
 
         val gw = TestWindow("テストウィンドウ", 400, 300, linesArray.toTypedArray())
         gw.isVisible = true

@@ -27,23 +27,11 @@ class TestWindow(title: String?, width: Int, height: Int, linesArray: Array<Stri
     override fun keyPressed(e: KeyEvent) {
         when (e.keyCode) {
             KeyEvent.VK_DOWN -> {
-                index++
-                if (index >= array.size) {
-                    index = array.size
-                    makeText("テキスト終了")
-                } else {
-                    makeText(array[index])
-                }
+                toNextText()
             }
 
             KeyEvent.VK_ENTER -> {
-                index++
-                if (index >= array.size) {
-                    index = array.size
-                    makeText("テキスト終了")
-                } else {
-                    makeText(array[index])
-                }
+                toNextText()
             }
 
             KeyEvent.VK_UP -> {
@@ -63,5 +51,15 @@ class TestWindow(title: String?, width: Int, height: Int, linesArray: Array<Stri
             println("")
         }
         println(text)
+    }
+
+    private fun toNextText() {
+        index++
+        if (index >= array.size) {
+            index = array.size
+            makeText("テキスト終了")
+        } else {
+            makeText(array[index])
+        }
     }
 }
