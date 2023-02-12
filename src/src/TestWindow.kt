@@ -30,15 +30,9 @@ class TestWindow(title: String?, width: Int, height: Int, linesArray: Array<Stri
                 index++
                 if (index >= array.size) {
                     index = array.size
-                    for (n in 0 until 100) {
-                        println("")
-                    }
-                    println("テキスト終了")
+                    makeText("テキスト終了")
                 } else {
-                    for (n in 0 until 100) {
-                        println("")
-                    }
-                    println(array[index] + "。")
+                    makeText(array[index])
                 }
             }
 
@@ -46,15 +40,9 @@ class TestWindow(title: String?, width: Int, height: Int, linesArray: Array<Stri
                 index++
                 if (index >= array.size) {
                     index = array.size
-                    for (n in 0 until 100) {
-                        println("")
-                    }
-                    println("テキスト終了")
+                    makeText("テキスト終了")
                 } else {
-                    for (n in 0 until 100) {
-                        println("")
-                    }
-                    println(array[index] + "。")
+                    makeText(array[index])
                 }
             }
 
@@ -62,17 +50,18 @@ class TestWindow(title: String?, width: Int, height: Int, linesArray: Array<Stri
                 index--
                 if (index <= -1) {
                     index = -1
-                    for (n in 0 until 100) {
-                        println("")
-                    }
-                    println("最初のtextです")
+                    makeText("最初のtextです")
                 } else {
-                    for (n in 0 until 100) {
-                        println("")
-                    }
-                    println(array[index] + "。")
+                    makeText(array[index])
                 }
             }
         }
+    }
+
+    private fun makeText(text: String) {
+        for (n in 0 until 100) {
+            println("")
+        }
+        println(text)
     }
 }

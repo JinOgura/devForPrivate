@@ -9,10 +9,10 @@ object Main {
         val fileName = "C:\\Users\\rkfeo\\Downloads\\da.txt"
         val file = File(fileName)
 
-        val text = file.readText()
-        val linesArray = text.split("。".toRegex()).toTypedArray()
+        val text = file.readText().replace("\\s".toRegex(), "").replace("?", "?はてなだよ").replace("。", "。コンマだよ")
+        val linesArray = text.split("コンマだよ","\n", "はてなだよ")
 
-        val gw = TestWindow("テストウィンドウ", 400, 300, linesArray)
+        val gw = TestWindow("テストウィンドウ", 400, 300, linesArray.toTypedArray())
         gw.isVisible = true
     }
 }
