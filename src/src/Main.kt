@@ -1,10 +1,14 @@
 import java.io.File
+import kotlin.io.*
 
 object Main {
     private var gw: TestWindow? = null
+    private var fileName = ""
 
     @JvmStatic
     fun main(args: Array<String>) {
+        print("読み込みたいテキストファイルの絶対パスを入力してください。")
+        fileName = readlnOrNull().toString()
         operate()
     }
 
@@ -14,7 +18,6 @@ object Main {
     }
 
     private fun operate() {
-        val fileName = "C:\\Users\\rkfeo\\Downloads\\da.txt"
         val file = File(fileName)
 
         val text = file.readText().replace("?", "?はてなだよ").replace("。", "。コンマだよ")
