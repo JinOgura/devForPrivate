@@ -41,6 +41,7 @@ object TextWindow {
                 }
 
                 KeyEvent.VK_LEFT -> {
+                    index = -1
                     Main.reset()
                 }
             }
