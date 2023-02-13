@@ -1,8 +1,10 @@
+import java.awt.event.MouseAdapter
+import java.awt.event.MouseEvent
 import java.io.File
 import kotlin.io.*
 
 object Main {
-    private var gw: TestWindow? = null
+    private var gw: TextWindow.TestWindow? = null
     private var fileName = ""
 
     @JvmStatic
@@ -23,7 +25,12 @@ object Main {
         val text = file.readText().replace("?", "?はてなだよ").replace("。", "。コンマだよ")
         var linesArray = text.split("コンマだよ", "\r\n", "\n", "はてなだよ")
         linesArray = linesArray.filter { item -> item.isNotEmpty() }
-        gw = TestWindow("テストウィンドウ", 400, 300, linesArray.toTypedArray())
+        gw = TextWindow.TestWindow("テストウィンドウ", 400, 300, linesArray.toTypedArray())
+        gw?.addMouseListener(object : MouseAdapter() {
+            override fun mouseClicked(e: MouseEvent?) {
+                TextWindow.toNextText(linesArray.toTypedArray())
+            }
+        })
         gw?.isVisible = true
     }
 }
