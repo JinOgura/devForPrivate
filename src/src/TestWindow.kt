@@ -1,12 +1,14 @@
 import java.awt.event.KeyEvent
 import java.awt.event.KeyListener
+import java.awt.event.MouseWheelEvent
+import java.awt.event.MouseWheelListener
 import javax.swing.JFrame
 
 object TextWindow {
     private var index = -1
 
     class TestWindow(title: String?, width: Int, height: Int, linesArray: Array<String>) : JFrame(title),
-        KeyListener {
+        KeyListener, MouseWheelListener {
         private val array = linesArray
 
         init {
@@ -18,6 +20,8 @@ object TextWindow {
 
             //キー入力の有効化
             addKeyListener(this)
+            //スクロール入力の有効化
+            addMouseWheelListener(this)
         }
 
         override fun keyPressed(e: KeyEvent) {
@@ -31,19 +35,21 @@ object TextWindow {
                 }
 
                 KeyEvent.VK_UP -> {
-                    index--
-                    if (index <= -1) {
-                        index = -1
-                        makeText("最初のtextです")
-                    } else {
-                        makeText(array[index])
-                    }
+                    toBeforeText(array)
                 }
 
                 KeyEvent.VK_LEFT -> {
                     index = -1
                     Main.reset()
                 }
+            }
+        }
+
+        override fun mouseWheelMoved(e: MouseWheelEvent) {
+            if (e.wheelRotation < 0) {
+                toBeforeText(array)
+            } else if (e.wheelRotation > 0) {
+                toNextText(array)
             }
         }
 
@@ -57,6 +63,16 @@ object TextWindow {
         if (index >= array.size) {
             index = array.size
             makeText("テキスト終了")
+        } else {
+            makeText(array[index])
+        }
+    }
+
+    fun toBeforeText(array: Array<String>) {
+        index--
+        if (index <= -1) {
+            index = -1
+            makeText("最初のtextです")
         } else {
             makeText(array[index])
         }
