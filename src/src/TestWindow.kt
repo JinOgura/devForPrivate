@@ -43,6 +43,10 @@ class TestWindow(title: String?, width: Int, height: Int, linesArray: Array<Stri
                     makeText(array[index])
                 }
             }
+
+            KeyEvent.VK_LEFT -> {
+               Main.reset()
+            }
         }
     }
 
