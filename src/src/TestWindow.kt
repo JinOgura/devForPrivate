@@ -47,7 +47,7 @@ object TextWindow {
 
         override fun mouseWheelMoved(e: MouseWheelEvent) {
             if (e.wheelRotation < 0) {
-                toBeforeText(array)
+                showBackLog(array)
             } else if (e.wheelRotation > 0) {
                 toNextText(array)
             }
@@ -83,5 +83,18 @@ object TextWindow {
             println("")
         }
         println(text)
+    }
+
+    fun showBackLog(array: Array<String>) {
+        var tenSentenceBefore = index - 10
+        if (tenSentenceBefore <= -1) {
+            tenSentenceBefore = 0
+        }
+        for(i in 0 until 100) {
+            println("")
+        }
+        for (i in tenSentenceBefore..index) {
+            println(array[i])
+        }
     }
 }
